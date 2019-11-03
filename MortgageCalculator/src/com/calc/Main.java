@@ -1,4 +1,4 @@
-package com.test;
+package com.calc;
 
 import org.w3c.dom.ls.LSOutput;
 
@@ -20,12 +20,14 @@ public class Main {
         float interestMonthly = interestAnn / (12 * 100); //div by 100 because is percentage, 12 months in 1 year
 
         System.out.print("Period (Years): ");
-        byte periodAnn = scanner.nextByte();
-        int periodMonths = periodAnn * 12; //12 months in a  year
+        byte years = scanner.nextByte();
+        int nPayments = years * 12; //12 months in a  year, pay each month
 
-        double mortgage = principal * (interestMonthly * Math.pow((1 + interestMonthly), periodMonths)) / ((Math.pow((1 + interestMonthly), periodMonths)) - 1);
-        NumberFormat mortgageFormatted = NumberFormat.getCurrencyInstance(mortgage).format();
+        double mortgage = principal
+                * (interestMonthly * Math.pow((1 + interestMonthly), nPayments))
+                / (Math.pow((1 + interestMonthly), nPayments)- 1);
 
+        String mortgageFormatted =NumberFormat.getCurrencyInstance().format(mortgage);
 
         System.out.print("Mortgage: " + mortgageFormatted);
 
